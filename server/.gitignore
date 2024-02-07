@@ -10,4 +10,4 @@ yarn.lock
 pnpm-lock.yaml
 
 # Custom build artifacts
-/public/static_tailwind.css
+/public/static/_tailwind.css
