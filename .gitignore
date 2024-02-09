@@ -2,12 +2,14 @@ node_modules
 dist
 .wrangler
 .dev.vars
+.env
 
 # Change them to your taste:
 wrangler.toml
 package-lock.json
 yarn.lock
 pnpm-lock.yaml
+bun.lockb
 
 # Custom build artifacts
 /public/static/_tailwind.css
