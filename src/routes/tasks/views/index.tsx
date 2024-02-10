@@ -24,11 +24,11 @@ const editForm = async (c: Context) => {
     throw error;
   }
 
-  return c.render(<EditForm task={task[0] as Task} />);
+  return c.render(<EditForm task={task[0] as Task} />, { title: 'Edit Task' });
 };
 
 const createForm = async (c: Context) => {
-  return c.render(<CreateForm />);
+  return c.render(<CreateForm />, { title: 'New Task' });
 };
 
 export default { tasksTable, editForm, createForm };
