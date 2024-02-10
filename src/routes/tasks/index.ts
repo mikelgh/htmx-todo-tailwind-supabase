@@ -1,31 +1,18 @@
 import { Hono } from 'hono';
 import { layout } from '../../middleware/layout';
-import { Context } from 'hono';
 import views from './views';
+import handlers from './handlers';
 
 const app = new Hono();
 
 // Handlers
-app.get('/', views.tasks);
-
-app.delete('/:id', async (c: Context) => {
-  const idToDelete = c.req.param('id');
-  const { error } = await c.var.supabase
-    .from('tasks')
-    .delete()
-    .eq('id', idToDelete);
-
-  if (error) {
-    c.status(204);
-  }
-
-  c.status(200);
-  return c.body('');
-});
+app.get('/', views.tasksTable);
+app.post('/', handlers.createNewTask);
+app.delete('/:id', handlers.deleteTaskById);
 
 // Pages
 app.use(layout);
-
-app.get('/:id/edit', views.edit);
+app.get('/new', views.createForm);
+app.get('/:id/edit', views.editPage);
 
 export default app;

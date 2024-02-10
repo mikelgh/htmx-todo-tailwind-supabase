@@ -1,7 +1,8 @@
 import { Context } from 'hono';
 import Table from './components/Table';
+import CreateForm from './components/CreateForm';
 
-const tasks = async (c: Context) => {
+const tasksTable = async (c: Context) => {
   const { data: tasks, error } = await c.var.supabase.from('tasks').select();
 
   if (error) {
@@ -11,8 +12,12 @@ const tasks = async (c: Context) => {
   return c.render(<Table tasks={tasks} />);
 };
 
-const edit = async (c: Context) => {
+const editPage = async (c: Context) => {
   return c.json(c.req.param('id'));
 };
 
-export default { tasks, edit };
+const createForm = async (c: Context) => {
+  return c.render(<CreateForm />);
+};
+
+export default { tasksTable, editPage, createForm };
