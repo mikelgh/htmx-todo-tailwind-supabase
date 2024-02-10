@@ -12,7 +12,6 @@ export default function RowButtons({ id }: Props) {
         className="inline-block p-3 text-gray-700 border-e hover:bg-gray-50 focus:relative"
         title="Edit Task"
         href={`/tasks/${id}/edit`}
-        hx-target="#home-container"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

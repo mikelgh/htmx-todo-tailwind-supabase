@@ -9,10 +9,11 @@ const app = new Hono();
 app.get('/', views.tasksTable);
 app.post('/', handlers.createNewTask);
 app.delete('/:id', handlers.deleteTaskById);
+app.put('/:id', handlers.updateTaskById);
 
 // Pages
 app.use(layout);
 app.get('/new', views.createForm);
-app.get('/:id/edit', views.editPage);
+app.get('/:id/edit', views.editForm);
 
 export default app;
