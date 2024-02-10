@@ -1,27 +1,30 @@
 import { Hono } from 'hono';
 import { logger } from 'hono/logger';
 import { homeRouter } from './routes';
-import { env } from 'hono/adapter';
-import { createClient } from '@supabase/supabase-js';
+import { supabaseMiddleware } from './middleware/supabase';
+import { SupabaseClient } from '@supabase/supabase-js';
 
-const app = new Hono();
+// c.var types
+type Variables = {
+  client: SupabaseClient;
+};
+
+// c.env types
+type Bindings = {
+  SUPABASE_URL: string;
+  SUPABASE_ANON_KEY: string;
+};
+
+const app = new Hono<{ Variables: Variables; Bindings: Bindings }>();
 
 // Middleware
-app.use('*', logger());
+app.use(logger());
 
 // Handlers
 app.get('/', (c) => c.redirect('/home'));
-app.get('/test', async (c) => {
-  const { SUPABASE_URL, SUPABASE_ANON_KEY } = env(c);
-  const supabase = createClient(
-    SUPABASE_URL as string,
-    SUPABASE_ANON_KEY as string
-  );
-  const { data: todos } = await supabase.from('tasks').select();
-  return c.json(todos);
-});
 
 // Routes
+app.use(supabaseMiddleware);
 app.route('/home', homeRouter);
 
 export default app;

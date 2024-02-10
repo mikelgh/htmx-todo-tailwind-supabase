@@ -1,10 +1,20 @@
 import { Context } from 'hono';
+import Table from './components/Table';
 
-const home = (c: Context) => {
+const home = async (c: Context) => {
+  const { data: tasks, error } = await c.var.supabase.from('tasks').select();
+
+  if (error) {
+    throw error;
+  }
+
   return c.render(
-    <h1 class="text-purple-500 text-2xl text-center">
-      I have TailwindCSS, with Hot Reload! Now powered by bun!
-    </h1>
+    <div class="w-full px-4 mx-auto sm:px-6 lg:px-16">
+      <h3 class="mb-8 text-2xl font-bold text-gray-900 sm:text-3xl">
+        Task List
+      </h3>
+      <Table tasks={tasks} />
+    </div>
   );
 };
 
