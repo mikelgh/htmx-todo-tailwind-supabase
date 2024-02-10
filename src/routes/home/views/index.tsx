@@ -9,7 +9,7 @@ const home = async (c: Context) => {
       <div hx-get="/tasks" hx-trigger="load" hx-swap="outerHTML">
         <div
           role="status"
-          className="p-4 space-y-4 border border-gray-200 divide-y divide-gray-200 rounded shadow max-w htmx-indicator animate-pulse"
+          className="p-4 space-y-4 border border-gray-200 divide-y divide-gray-200 rounded shadow animate-pulse md:p-6 htmx-indicator"
         >
           <div className="flex items-center justify-between">
             <div>
