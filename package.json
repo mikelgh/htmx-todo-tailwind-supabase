@@ -5,7 +5,7 @@
     "dev:css": "npm run build:css -- --watch",
     "dev:server": "wrangler dev src/index.tsx --assets dist --live-reload",
     "dev": "concurrently \"npm:dev:*\"",
-    "deploy": "build:css && wrangler deploy --minify src/index.tsx --assets dist"
+    "deploy": "npm run build:css && wrangler deploy --minify src/index.tsx --assets dist"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.39.3",
