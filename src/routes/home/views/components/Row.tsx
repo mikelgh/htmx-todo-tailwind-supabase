@@ -1,5 +1,6 @@
 import SuccessBadge from './SuccessBadge';
 import ErrorBadge from './ErrorBadge';
+import RowButtons from './RowButtons';
 
 export default function Row({
   id,
@@ -9,7 +10,7 @@ export default function Row({
   due_date,
 }: Task) {
   return (
-    <tr>
+    <tr id={`row-${id.toString()}`}>
       <td className="px-4 py-2 font-medium text-gray-900 truncate whitespace-nowrap max-w-[14ch]">
         {title}
       </td>
@@ -27,7 +28,7 @@ export default function Row({
         {new Date(due_date).toISOString().split('T')[0].replaceAll('-', '/')}
       </td>
       <td className="px-4 py-2 text-center whitespace-nowrap">
-        {/* <TableRowButtons id={id} /> */}
+        <RowButtons id={id} />
       </td>
     </tr>
   );

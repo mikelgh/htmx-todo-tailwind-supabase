@@ -1,5 +1,5 @@
 import { Hono } from 'hono';
-import { layout } from './views/layout';
+import { layout } from '../../middleware/layout';
 import views from './views';
 
 const app = new Hono();

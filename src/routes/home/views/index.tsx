@@ -9,7 +9,7 @@ const home = async (c: Context) => {
   }
 
   return c.render(
-    <div class="w-full px-4 mx-auto sm:px-6 lg:px-16">
+    <div id="home-container" class="w-full px-4 mx-auto sm:px-6 lg:px-16">
       <h3 class="mb-8 text-2xl font-bold text-gray-900 sm:text-3xl">
         Task List
       </h3>

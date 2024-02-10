@@ -1,6 +1,6 @@
 import { Hono } from 'hono';
 import { logger } from 'hono/logger';
-import { homeRouter } from './routes';
+import { homeRouter, tasksRouter } from './routes';
 import { supabaseMiddleware } from './middleware/supabase';
 import { SupabaseClient } from '@supabase/supabase-js';
 
@@ -26,5 +26,6 @@ app.get('/', (c) => c.redirect('/home'));
 // Routes
 app.use(supabaseMiddleware);
 app.route('/home', homeRouter);
+app.route('/tasks', tasksRouter);
 
 export default app;
