@@ -26,14 +26,18 @@ function authErrorPage(c: Context) {
 
 function authLoginPage(c: Context) {
   return c.render(
-    <div className="flex max-w-sm mx-auto overflow-hidden bg-white border rounded-lg shadow-none md:shadow-lg lg:max-w-4xl">
+    <div className="flex max-w-sm m-2 mx-auto overflow-hidden bg-white rounded-lg shadow-none md:shadow-lg lg:max-w-4xl">
       <div
         className="hidden bg-cover lg:block lg:w-1/2"
         style="background-image:url('https://images.unsplash.com/photo-1546514714-df0ccc50d7bf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=667&q=80')"
       ></div>
-      <form className="w-full p-8 lg:w-1/2" action="/auth/login" method="post">
+      <form
+        className="w-full p-8 m-4 border rounded md:border-none md:m-0 lg:w-1/2"
+        action="/auth/login"
+        method="post"
+      >
         <h2 className="text-2xl font-semibold text-center text-gray-700">
-          Welcome to Cloud Task
+          ⚡ Welcome to Hyper Task!
         </h2>
         <a
           href="/auth/login/google"

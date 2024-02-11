@@ -12,7 +12,7 @@ export default function Header({ isAuthenticated = false }: Props) {
         >
           <a href="/" className="text-center sm:text-left">
             <h1 className="text-2xl font-bold text-gray-900 sm:text-3xl">
-              Cloud Task ☁️
+              Hyper Task ⚡
             </h1>
 
             <p className="mt-1.5 text-sm text-gray-500">
