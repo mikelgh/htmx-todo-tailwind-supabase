@@ -1,24 +1,38 @@
-import { createClient } from '@supabase/supabase-js';
+import { createServerClient } from '@supabase/ssr';
 import type { SupabaseClient } from '@supabase/supabase-js';
 import type { MiddlewareHandler } from 'hono';
+import { getCookie, setCookie, deleteCookie } from 'hono/cookie';
 import { env } from 'hono/adapter';
+import { Context } from 'hono';
 
 export const supabaseMiddleware: MiddlewareHandler<{
   Variables: {
     supabase: SupabaseClient;
   };
-}> = async (c, next) => {
+}> = async (c: Context, next) => {
   const { SUPABASE_URL, SUPABASE_ANON_KEY } = env(c);
 
-  if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
-    await next();
-  } else {
-    const client = createClient(
-      SUPABASE_URL as string,
-      SUPABASE_ANON_KEY as string
-    );
-
-    c.set('supabase', client);
-    await next();
-  }
+  const client = createServerClient(
+    SUPABASE_URL ?? '',
+    SUPABASE_ANON_KEY ?? '',
+    {
+      cookies: {
+        get: (key: string) => {
+          return getCookie(c, key);
+        },
+        set: (key: string, value: any, options: object) => {
+          setCookie(c, key, value, options);
+        },
+        remove: (key: string, options: object) => {
+          deleteCookie(c, key, options);
+        },
+      },
+      cookieOptions: {
+        httpOnly: true,
+        secure: true,
+      },
+    }
+  );
+  c.set('supabase', client);
+  await next();
 };
