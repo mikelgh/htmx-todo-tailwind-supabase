@@ -1,4 +1,4 @@
-import { Context, ErrorHandler } from 'hono';
+import { Context } from 'hono';
 
 function Error({ errorMessage }: { errorMessage: string }): JSX.Element {
   return (

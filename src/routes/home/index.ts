@@ -4,7 +4,7 @@ import views from './views';
 
 const app = new Hono();
 
-app.use(layout);
+app.use(layout());
 
 app.get('/', views.home);
 

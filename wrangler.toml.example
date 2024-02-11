@@ -5,7 +5,12 @@ main = "src/index.tsx"
 [vars]
 SUPABASE_URL = "your-supabase-url"
 SUPABASE_ANON_KEY = "your-supabase-anon-key"
+BASE_URL = "https://your-cloudflare-deployment-url"
 
+[env.dev.vars]
+SUPABASE_URL = "your-supabase-url"
+SUPABASE_ANON_KEY = "your-supabase-anon-key"
+BASE_URL = "http://127.0.0.1:8787/"
 
 # [[kv_namespaces]]
 # binding = "MY_KV_NAMESPACE"
