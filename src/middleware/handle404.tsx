@@ -1,5 +1,5 @@
 import { Context } from 'hono';
-import ErrorPage from '../components/ErrorPage';
+import ErrorPage from '../views/ErrorPage';
 
 export default function handle404(c: Context) {
   c.status(404);

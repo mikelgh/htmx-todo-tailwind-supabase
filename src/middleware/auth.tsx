@@ -1,6 +1,5 @@
-import type { MiddlewareHandler } from 'hono';
+import type { MiddlewareHandler, Context } from 'hono';
 import type { SupabaseClient } from '@supabase/supabase-js';
-import { Context } from 'hono';
 
 export const authMiddleware: MiddlewareHandler<{
   Variables: {

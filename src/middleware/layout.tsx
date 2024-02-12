@@ -1,6 +1,5 @@
 import { jsxRenderer } from 'hono/jsx-renderer';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
+import { Header, Footer } from '../views';
 
 interface Props {
   isAuthenticated?: boolean;
