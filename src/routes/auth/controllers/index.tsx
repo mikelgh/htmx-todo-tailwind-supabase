@@ -31,7 +31,7 @@ async function loginWithGoogle(c: Context) {
 
 async function handleOAuthCallback(c: Context) {
   const code = c.req.query('code');
-  const next = c.req.query('next') ?? '/';
+  const next = c.req.query('next') ?? '/tasks/dashboard';
   if (code !== undefined) {
     const { error } = await c.var.supabase.auth.exchangeCodeForSession(code);
     if (error === null) {

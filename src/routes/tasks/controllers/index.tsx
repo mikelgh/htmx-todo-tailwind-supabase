@@ -70,7 +70,7 @@ async function createNewTask(c: Context) {
     throw error;
   }
 
-  return c.redirect('/');
+  return c.redirect('/tasks/dashboard');
 }
 
 async function updateTaskById(c: Context) {
