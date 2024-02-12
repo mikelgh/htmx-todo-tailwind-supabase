@@ -2,8 +2,12 @@ import { Hono } from 'hono';
 import { layout } from '../../middleware/layout';
 import views from './views';
 import handlers from './handlers';
+import { authMiddleware } from '../../middleware/auth';
 
 const app = new Hono();
+
+// Middleware
+app.use(authMiddleware);
 
 // Handlers
 app.get('/', views.tasksTable);
