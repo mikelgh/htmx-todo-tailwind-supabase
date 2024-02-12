@@ -1,5 +1,15 @@
 import { Context } from 'hono';
-import { Table, CreateForm, EditForm, SuccesfulEdit } from '../views';
+import {
+  Table,
+  CreateForm,
+  EditForm,
+  SuccesfulEdit,
+  Dashboard,
+} from '../views';
+
+async function getDashboard(c: Context) {
+  return c.render(<Dashboard />);
+}
 
 async function getTasksTable(c: Context) {
   const { data: tasks, error } = await c.var.supabase.from('tasks').select();
@@ -94,4 +104,5 @@ export default {
   createNewTask,
   deleteTaskById,
   updateTaskById,
+  getDashboard,
 };

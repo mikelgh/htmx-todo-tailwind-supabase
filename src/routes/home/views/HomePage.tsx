@@ -1,52 +1,38 @@
 export default function HomePage() {
   return (
-    <div id="home-container" className="w-full px-4 mx-auto sm:px-6 lg:px-16">
-      <h3 className="mb-8 text-2xl font-bold text-gray-900 sm:text-3xl">
-        Task List
-      </h3>
-      <div hx-get="/tasks" hx-trigger="load" hx-swap="outerHTML">
-        <div
-          role="status"
-          className="p-4 space-y-4 border border-gray-200 divide-y divide-gray-200 rounded shadow animate-pulse md:p-6 htmx-indicator"
-        >
-          <div className="flex items-center justify-between">
-            <div>
-              <div className="h-2.5 bg-gray-300 rounded-full w-24 mb-2.5"></div>
-              <div className="w-32 h-2 bg-gray-200 rounded-full"></div>
-            </div>
-            <div className="h-2.5 bg-gray-300 rounded-full w-12"></div>
+    <section>
+      <div class="mx-auto max-w-screen-xl px-4 lg:flex lg:items-center py-8 md:py-16 lg:py-32 ">
+        <div class="mx-auto max-w-xl text-center">
+          <h1 class="text-3xl font-extrabold sm:text-5xl">
+            Conquer your day
+            <strong class="font-extrabold text-yellow-400 sm:block">
+              {' '}
+              One task at a time.{' '}
+            </strong>
+          </h1>
+
+          <p class="mt-4 sm:text-xl/relaxed">
+            Seamlessly organize tasks for ultimate productivity. Stay focused,
+            achieve more, and thrive!
+          </p>
+
+          <div class="mt-8 flex flex-wrap justify-center gap-4">
+            <a
+              class="block w-full rounded bg-yellow-500 px-12 py-3 text-sm font-medium text-white shadow hover:bg-yellow-600 focus:outline-none focus:ring active:bg-yellow-500 sm:w-auto"
+              href="/tasks/dashboard"
+            >
+              Dashboard
+            </a>
+
+            <a
+              class="block w-full rounded px-12 py-3 text-sm font-medium text-yellow-500 shadow hover:text-yellow-600 focus:outline-none focus:ring active:text-yellow-500 sm:w-auto"
+              href="#"
+            >
+              Learn More
+            </a>
           </div>
-          <div className="flex items-center justify-between pt-4">
-            <div>
-              <div className="h-2.5 bg-gray-300 rounded-full w-24 mb-2.5"></div>
-              <div className="w-32 h-2 bg-gray-200 rounded-full"></div>
-            </div>
-            <div className="h-2.5 bg-gray-300 rounded-full w-12"></div>
-          </div>
-          <div className="flex items-center justify-between pt-4">
-            <div>
-              <div className="h-2.5 bg-gray-300 rounded-full w-24 mb-2.5"></div>
-              <div className="w-32 h-2 bg-gray-200 rounded-full"></div>
-            </div>
-            <div className="h-2.5 bg-gray-300 rounded-full w-12"></div>
-          </div>
-          <div className="flex items-center justify-between pt-4">
-            <div>
-              <div className="h-2.5 bg-gray-300 rounded-full w-24 mb-2.5"></div>
-              <div className="w-32 h-2 bg-gray-200 rounded-full"></div>
-            </div>
-            <div className="h-2.5 bg-gray-300 rounded-full w-12"></div>
-          </div>
-          <div className="flex items-center justify-between pt-4">
-            <div>
-              <div className="h-2.5 bg-gray-300 rounded-full w-24 mb-2.5"></div>
-              <div className="w-32 h-2 bg-gray-200 rounded-full"></div>
-            </div>
-            <div className="h-2.5 bg-gray-300 rounded-full w-12"></div>
-          </div>
-          <span className="sr-only">Loading...</span>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

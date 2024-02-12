@@ -6,3 +6,4 @@ export { default as RowButtons } from './RowButtons';
 export { default as SuccessBadge } from './SuccessBadge';
 export { default as Table } from './Table';
 export { default as SuccesfulEdit } from './SuccessfulEdit';
+export { default as Dashboard } from './Dashboard';

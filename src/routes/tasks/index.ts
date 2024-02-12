@@ -16,6 +16,7 @@ app.put('/:id', controllers.updateTaskById);
 
 // Pages
 app.use(layout());
+app.get('/dashboard', controllers.getDashboard);
 app.get('/new', controllers.getCreateForm);
 app.get('/:id/edit', controllers.getTaskEditForm);
 
