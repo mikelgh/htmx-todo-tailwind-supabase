@@ -4,7 +4,10 @@ interface Props {
 
 export default function AuthLoginPage({ isInvalid = false }: Props = {}) {
   return (
-    <div className="flex max-w-sm m-2 mx-auto overflow-hidden bg-white rounded-lg shadow-none md:shadow-lg lg:max-w-4xl">
+    <div
+      className="flex max-w-sm m-2 mx-auto overflow-hidden bg-white rounded-lg shadow-none md:shadow-lg lg:max-w-4xl"
+      hx-boost="true"
+    >
       <div
         className="hidden bg-cover lg:block lg:w-1/2"
         style="background-image:url('https://images.unsplash.com/photo-1546514714-df0ccc50d7bf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=667&q=80')"

@@ -1,6 +1,11 @@
 import { Context } from 'hono';
 import { env } from 'hono/adapter';
-import { AuthErrorPage, AuthLoginPage, AuthSignUpPage } from '../views';
+import {
+  AuthErrorPage,
+  AuthLoginPage,
+  AuthSignUpPage,
+  EmailVerificationCTA,
+} from '../views';
 
 function getAuthErrorPage(c: Context) {
   return c.render(<AuthErrorPage />);
@@ -38,14 +43,14 @@ async function signUpWithEmail(c: Context) {
 
   const { email, password } = await c.req.parseBody();
 
-  const { data } = await c.var.supabase.auth.signUp({
+  const { data, error } = await c.var.supabase.auth.signUp({
     email,
     password,
-    options: { emailRedirectTo: `${BASE_URL}/tasks/dashboard` },
+    options: { emailRedirectTo: `${BASE_URL}/auth/login` },
   });
 
-  if (data.url !== null) {
-    return c.redirect(data.url);
+  if (error == null) {
+    return c.render(<EmailVerificationCTA />);
   }
 
   return c.redirect('/auth/error');

@@ -1,8 +1,8 @@
 export default function AuthSignUpPage() {
   return (
     <div
-      id="login-form"
       className="flex max-w-sm m-2 mx-auto overflow-hidden bg-white rounded-lg shadow-none md:shadow-lg lg:max-w-4xl"
+      hx-boost="true"
     >
       <div
         className="hidden bg-cover lg:block lg:w-1/2"
@@ -12,8 +12,6 @@ export default function AuthSignUpPage() {
         className="w-full p-8 m-4 border rounded md:border-none md:m-0 lg:w-1/2"
         action="/auth/sign-up"
         method="post"
-        hx-target="#login-form"
-        hx-swap="outerHTML"
       >
         <h2 className="text-2xl font-semibold text-center text-gray-700">
           ⚡ Create An Account
