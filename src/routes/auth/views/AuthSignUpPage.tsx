@@ -1,21 +1,22 @@
-interface Props {
-  isInvalid?: boolean;
-}
-
-export default function AuthLoginPage({ isInvalid = false }: Props = {}) {
+export default function AuthSignUpPage() {
   return (
-    <div className="flex max-w-sm m-2 mx-auto overflow-hidden bg-white rounded-lg shadow-none md:shadow-lg lg:max-w-4xl">
+    <div
+      id="login-form"
+      className="flex max-w-sm m-2 mx-auto overflow-hidden bg-white rounded-lg shadow-none md:shadow-lg lg:max-w-4xl"
+    >
       <div
         className="hidden bg-cover lg:block lg:w-1/2"
         style="background-image:url('https://images.unsplash.com/photo-1546514714-df0ccc50d7bf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=667&q=80')"
       ></div>
       <form
         className="w-full p-8 m-4 border rounded md:border-none md:m-0 lg:w-1/2"
-        action="/auth/login"
+        action="/auth/sign-up"
         method="post"
+        hx-target="#login-form"
+        hx-swap="outerHTML"
       >
         <h2 className="text-2xl font-semibold text-center text-gray-700">
-          ⚡ Welcome to Hyper Task!
+          ⚡ Create An Account
         </h2>
         <a
           href="/auth/login/google"
@@ -48,7 +49,7 @@ export default function AuthLoginPage({ isInvalid = false }: Props = {}) {
         <div className="flex items-center justify-between mt-4">
           <span className="w-1/5 border-b lg:w-1/4"></span>
           <p className="text-xs text-center text-gray-500 uppercase cursor-default">
-            or login with email
+            or sign up with email
           </p>
           <span className="w-1/5 border-b lg:w-1/4"></span>
         </div>
@@ -73,17 +74,16 @@ export default function AuthLoginPage({ isInvalid = false }: Props = {}) {
               for="password"
               className="block mb-2 text-sm font-bold text-gray-700"
             >
-              Password
+              Password{' '}
+              <span className="text-xs italic font-normal">- min 8 chars.</span>
             </label>
-            <a href="#" className="text-xs text-gray-500">
-              Forget Password?
-            </a>
           </div>
           <input
             id="password"
             name="password"
             className="block w-full px-4 py-2 text-gray-700 bg-gray-200 border border-gray-300 rounded appearance-none focus:outline-none focus:shadow-outline"
             type="password"
+            minLength="8"
             required
           />
         </div>
@@ -92,23 +92,16 @@ export default function AuthLoginPage({ isInvalid = false }: Props = {}) {
             type="submit"
             className="w-full px-4 py-2 font-bold text-white bg-gray-700 rounded hover:bg-gray-600 disabled:bg-gray-600"
           >
-            Login
+            Sign Up
           </button>
         </div>
         <div className="flex items-center justify-between mt-4">
           <span className="w-1/5 border-b md:w-1/4"></span>
-          <a href="/auth/sign-up" className="text-xs text-gray-500 uppercase">
-            or sign up
+          <a href="/auth/login" className="text-xs text-gray-500 uppercase">
+            or login
           </a>
           <span className="w-1/5 border-b md:w-1/4"></span>
         </div>
-        {isInvalid ? (
-          <p className="mt-4 font-semibold text-center text-red-500">
-            Invalid email or password
-          </p>
-        ) : (
-          ''
-        )}
       </form>
     </div>
   );

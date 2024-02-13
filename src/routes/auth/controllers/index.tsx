@@ -1,6 +1,6 @@
 import { Context } from 'hono';
 import { env } from 'hono/adapter';
-import { AuthErrorPage, AuthLoginPage } from '../views';
+import { AuthErrorPage, AuthLoginPage, AuthSignUpPage } from '../views';
 
 function getAuthErrorPage(c: Context) {
   return c.render(<AuthErrorPage />);
@@ -8,6 +8,10 @@ function getAuthErrorPage(c: Context) {
 
 function getAuthLoginPage(c: Context) {
   return c.render(<AuthLoginPage />);
+}
+
+function getAuthSignUpPage(c: Context) {
+  return c.render(<AuthSignUpPage />);
 }
 
 async function loginWithGoogle(c: Context) {
@@ -40,8 +44,6 @@ async function signUpWithEmail(c: Context) {
     options: { emailRedirectTo: `${BASE_URL}/tasks/dashboard` },
   });
 
-  console.log('USER SIGN UP', data);
-
   if (data.url !== null) {
     return c.redirect(data.url);
   }
@@ -65,8 +67,7 @@ async function signInWithEmail(c: Context) {
   if (user !== null) {
     return c.redirect('/tasks/dashboard');
   }
-
-  return c.redirect('/auth/error');
+  return c.render(<AuthLoginPage isInvalid={true} />);
 }
 
 async function handleOAuthCallback(c: Context) {
@@ -90,6 +91,7 @@ async function logoutSession(c: Context) {
 export default {
   getAuthErrorPage,
   getAuthLoginPage,
+  getAuthSignUpPage,
   loginWithGoogle,
   handleOAuthCallback,
   logoutSession,
