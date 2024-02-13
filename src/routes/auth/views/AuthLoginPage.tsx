@@ -60,7 +60,6 @@ export default function AuthloginPage() {
             name="email"
             className="block w-full px-4 py-2 text-gray-700 bg-gray-200 border border-gray-300 rounded appearance-none focus:outline-none focus:shadow-outline"
             type="email"
-            disabled
           />
         </div>
         <div className="mt-4">
@@ -80,13 +79,11 @@ export default function AuthloginPage() {
             name="password"
             className="block w-full px-4 py-2 text-gray-700 bg-gray-200 border border-gray-300 rounded appearance-none focus:outline-none focus:shadow-outline"
             type="password"
-            disabled
           />
         </div>
         <div className="mt-8">
           <button
             type="submit"
-            disabled
             className="w-full px-4 py-2 font-bold text-white bg-gray-700 rounded hover:bg-gray-600 disabled:bg-gray-600"
           >
             Login

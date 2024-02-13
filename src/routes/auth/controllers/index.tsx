@@ -29,6 +29,46 @@ async function loginWithGoogle(c: Context) {
   return c.redirect('/auth/error');
 }
 
+async function signUpWithEmail(c: Context) {
+  const { BASE_URL } = env(c);
+
+  const { email, password } = await c.req.parseBody();
+
+  const { data } = await c.var.supabase.auth.signUp({
+    email,
+    password,
+    options: { emailRedirectTo: `${BASE_URL}/tasks/dashboard` },
+  });
+
+  console.log('USER SIGN UP', data);
+
+  if (data.url !== null) {
+    return c.redirect(data.url);
+  }
+
+  return c.redirect('/auth/error');
+}
+
+async function signInWithEmail(c: Context) {
+  const { BASE_URL } = env(c);
+
+  const { email, password } = await c.req.parseBody();
+
+  const {
+    data: { user },
+  } = await c.var.supabase.auth.signInWithPassword({
+    email,
+    password,
+    options: { redirectTo: `${BASE_URL}/tasks/dashboard` },
+  });
+
+  if (user !== null) {
+    return c.redirect('/tasks/dashboard');
+  }
+
+  return c.redirect('/auth/error');
+}
+
 async function handleOAuthCallback(c: Context) {
   const code = c.req.query('code');
   const next = c.req.query('next') ?? '/tasks/dashboard';
@@ -53,4 +93,6 @@ export default {
   loginWithGoogle,
   handleOAuthCallback,
   logoutSession,
+  signUpWithEmail,
+  signInWithEmail,
 };
