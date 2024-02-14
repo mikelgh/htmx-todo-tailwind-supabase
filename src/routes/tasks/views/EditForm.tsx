@@ -88,7 +88,7 @@ export default function EditForm({ task }: { task: Task }) {
           >
             <a
               className="inline-block px-12 py-3 text-sm font-medium text-center text-red-600 transition-all border border-red-600 rounded-lg text-nowrap hover:bg-red-600 hover:text-white focus:outline-none focus:ring active:bg-red-500"
-              href="/"
+              href="/tasks/dashboard"
             >
               Cancel
             </a>

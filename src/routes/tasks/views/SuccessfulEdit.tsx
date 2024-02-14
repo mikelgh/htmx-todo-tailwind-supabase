@@ -1,7 +1,7 @@
 export default function SuccesfulEdit() {
   return (
     <div
-      hx-get="/"
+      hx-get="/tasks/dashboard"
       hx-trigger="load delay:2s"
       hx-boost="true"
       hx-target="body"
@@ -12,7 +12,7 @@ export default function SuccesfulEdit() {
           Successfully edited the task ✅
         </h2>
         <p className="mt-1.5 text-sm text-gray-500">
-          Redirecting you back to home...
+          Redirecting you back to your dashboard...
         </p>
       </div>
 
