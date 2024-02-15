@@ -1,13 +1,19 @@
+// Library Imports
 import { Hono } from 'hono';
 import { logger } from 'hono/logger';
 import { env } from 'hono/adapter';
 import { SupabaseClient } from '@supabase/supabase-js';
 
+// Middleware Imports
 import { supabaseMiddleware } from './middleware/supabase';
 import { layout } from './middleware/layout';
 import handle404 from './middleware/handle404';
 import handleError from './middleware/handleError';
-import { homeRouter, tasksRouter, authRouter } from './routes';
+
+// Router Imports
+import homeRouter from './routes/home';
+import tasksRouter from './routes/tasks';
+import authRouter from './routes/auth';
 
 // c.var types
 type Variables = {

@@ -1,11 +1,9 @@
 import { Context } from 'hono';
-import {
-  Table,
-  CreateForm,
-  EditForm,
-  SuccesfulEdit,
-  Dashboard,
-} from '../views';
+import Table from '../views/Table';
+import CreateForm from '../views/CreateForm';
+import EditForm from '../views/EditForm';
+import SuccesfulEdit from '../views/SuccessfulEdit';
+import Dashboard from '../views/Dashboard';
 
 async function getDashboard(c: Context) {
   return c.render(<Dashboard />);

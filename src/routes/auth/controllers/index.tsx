@@ -1,11 +1,9 @@
 import { Context } from 'hono';
 import { env } from 'hono/adapter';
-import {
-  AuthErrorPage,
-  AuthLoginPage,
-  AuthSignUpPage,
-  EmailVerificationCTA,
-} from '../views';
+import AuthErrorPage from '../views/AuthErrorPage';
+import AuthLoginPage from '../views/AuthLoginPage';
+import AuthSignUpPage from '../views/AuthSignUpPage';
+import EmailVerificationCTA from '../views/EmailVerificationCTA';
 
 function getAuthErrorPage(c: Context) {
   return c.render(<AuthErrorPage />);
