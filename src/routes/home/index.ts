@@ -1,11 +1,11 @@
 import { Hono } from 'hono';
 import { layout } from '../../middleware/layout';
-import controllers from './controllers';
+import viewController from './controllers/view.controller';
 
 const app = new Hono();
 
 // Pages
 app.use(layout({ isAuthenticated: false }));
-app.get('/', controllers.getHomePage);
+app.get('/', viewController.homePage);
 
 export default app;

@@ -1,18 +1,20 @@
 import { Hono } from 'hono';
 import { layout } from '../../middleware/layout';
-import controllers from './controllers';
+import signUpController from './controllers/sign-up.controller';
+import loginController from './controllers/login.controller';
+import viewController from './controllers/view.controller';
 
 const app = new Hono();
 
 app.use(layout({ isAuthenticated: false }));
 
-app.get('/login', controllers.getAuthLoginPage);
-app.post('/login', controllers.signInWithEmail);
-app.get('/login/google', controllers.loginWithGoogle);
-app.post('/sign-up', controllers.signUpWithEmail);
-app.get('/sign-up', controllers.getAuthSignUpPage);
-app.get('/callback', controllers.handleOAuthCallback);
-app.post('/logout', controllers.logoutSession);
-app.get('/error', controllers.getAuthErrorPage);
+app.get('/login', viewController.authLogin);
+app.post('/login', loginController.loginWithEmail);
+app.get('/login/google', loginController.loginWithGoogle);
+app.post('/sign-up', signUpController.signUpWithEmail);
+app.get('/sign-up', viewController.authSignUp);
+app.get('/callback', loginController.handleOAuthCallback);
+app.post('/logout', loginController.logoutSession);
+app.get('/error', viewController.authError);
 
 export default app;

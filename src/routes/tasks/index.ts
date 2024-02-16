@@ -1,7 +1,8 @@
 import { Hono } from 'hono';
 import { layout } from '../../middleware/layout';
-import controllers from './controllers';
 import { authMiddleware } from '../../middleware/auth';
+import tasksController from './controllers/tasks.controller';
+import viewController from './controllers/view.controller';
 
 const app = new Hono();
 
@@ -9,15 +10,15 @@ const app = new Hono();
 app.use(authMiddleware);
 
 // Handlers
-app.get('/', controllers.getTasksTable);
-app.post('/', controllers.createNewTask);
-app.delete('/:id', controllers.deleteTaskById);
-app.put('/:id', controllers.updateTaskById);
+app.get('/', viewController.tasksTable);
+app.post('/', tasksController.createNewTask);
+app.delete('/:id', tasksController.deleteTaskById);
+app.put('/:id', tasksController.updateTaskById);
 
 // Pages
 app.use(layout());
-app.get('/dashboard', controllers.getDashboard);
-app.get('/new', controllers.getCreateForm);
-app.get('/:id/edit', controllers.getTaskEditForm);
+app.get('/dashboard', viewController.dashboard);
+app.get('/new', viewController.newTask);
+app.get('/:id/edit', viewController.editTask);
 
 export default app;
