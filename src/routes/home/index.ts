@@ -7,5 +7,6 @@ const app = new Hono();
 // Pages
 app.use(layout({ isAuthenticated: false }));
 app.get('/', viewController.homePage);
+app.get('/editor', viewController.editor);
 
 export default app;
