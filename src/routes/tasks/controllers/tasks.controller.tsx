@@ -1,6 +1,7 @@
 import { Context } from 'hono';
 import tasksService from '../services/tasks.service';
 import SuccesfulEdit from '../views/SuccessfulEdit';
+import { TaskSchema, Task } from '../models/task.model';
 
 async function deleteTaskById(c: Context) {
   const idToDelete = c.req.param('id');
@@ -13,13 +14,7 @@ async function deleteTaskById(c: Context) {
 async function createNewTask(c: Context) {
   const formData = await c.req.parseBody();
 
-  // TODO: Perform validation with a library
-  const newTaskData = {
-    title: formData.title as string,
-    description: formData.description as string,
-    completed: formData.status === 'true',
-    due_date: formData.due_date as string,
-  };
+  const newTaskData: Omit<Task, 'id'> = TaskSchema.omit({id: true}).parse(formData);
 
   tasksService.createTask(c, newTaskData);
 
@@ -30,14 +25,8 @@ async function updateTaskById(c: Context) {
   const idToUpdate = c.req.param('id');
   const formData = await c.req.parseBody();
 
-  // TODO: Perform validation with a library
-  const updatedTaskData: Omit<Task, 'id'> = {
-    title: formData.title as string,
-    description: formData.description as string,
-    completed: formData.status === 'true',
-    due_date: formData.due_date as string,
-  };
-
+  const updatedTaskData: Omit<Task, 'id'> = TaskSchema.omit({id: true}).parse(formData);
+  
   await tasksService.updateTask(c, idToUpdate, updatedTaskData);
 
   return c.render(<SuccesfulEdit />);

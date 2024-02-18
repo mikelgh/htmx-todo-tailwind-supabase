@@ -4,9 +4,10 @@ import CreateForm from '../views/CreateForm';
 import EditForm from '../views/EditForm';
 import Table from '../views/Table';
 import { Context } from 'hono';
+import { Task } from '../models/task.model';
 
 async function tasksTable(c: Context) {
-  const tasks = await tasksService.getAllTasks(c);
+  const tasks: Task[] = await tasksService.getAllTasks(c);
 
   return c.render(<Table tasks={tasks} />);
 }

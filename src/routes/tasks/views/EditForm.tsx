@@ -45,15 +45,15 @@ export default function EditForm({ task }: { task: Task }) {
           <div className="flex flex-col justify-center gap-4 mb-8 md:flex-row">
             <div className="grid w-full">
               <label
-                htmlFor="status"
+                htmlFor="completed"
                 className="block p-2 text-sm font-medium text-gray-700"
               >
                 Status
               </label>
 
               <select
-                name="status"
-                id="status"
+                name="completed"
+                id="completed"
                 className="w-full p-2 align-top border border-gray-200 rounded-lg shadow-sm sm:text-sm"
                 required
                 value={completed ? 'true' : 'false'}
