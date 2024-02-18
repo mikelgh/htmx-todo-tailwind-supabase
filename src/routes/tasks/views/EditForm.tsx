@@ -56,11 +56,10 @@ export default function EditForm({ task }: { task: Task }) {
                 id="completed"
                 className="w-full p-2 align-top border border-gray-200 rounded-lg shadow-sm sm:text-sm"
                 required
-                value={completed ? 'true' : 'false'}
               >
                 <option disabled>Choose a status</option>
-                <option value="false">Pending</option>
-                <option value="true">Completed</option>
+                <option value="false" selected={!completed}>Pending</option>
+                <option value="true" selected={completed}>Completed</option>
               </select>
             </div>
 
