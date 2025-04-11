@@ -4,7 +4,7 @@ export const TaskSchema = z.object({
   id: z.string().uuid().optional(),
   title: z.string(),
   description: z.string(),
-  completed: z.coerce.boolean(),
+  completed: z.string().transform((val) => val === 'true'),
   due_date: z.coerce.date()
 })
 
