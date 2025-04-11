@@ -1,7 +1,10 @@
 import { Context } from 'hono';
 
 async function getAllTasks(c: Context): Promise<Task[]> {
-  const { data: tasks, error } = await c.var.supabase.from('tasks').select();
+  const { data: tasks, error } = await c.var.supabase
+    .from('tasks')
+    .select()
+    .order('created_at', { ascending: false });
 
   if (error) {
     throw error;
@@ -32,7 +35,18 @@ async function deleteTaskById(c: Context, id: string): Promise<void> {
 }
 
 async function createTask(c: Context, task: Omit<Task, 'id'>) {
-  const { error } = await c.var.supabase.from('tasks').insert(task);
+  const {
+    data: { user },
+  } = await c.var.supabase.auth.getUser();
+
+  if (!user) {
+    throw new Error('User not authenticated');
+  }
+
+  const { error } = await c.var.supabase.from('tasks').insert({
+    ...task,
+    user_id: user.id
+  });
 
   if (error) {
     throw error;

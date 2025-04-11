@@ -20,7 +20,10 @@ export const supabaseMiddleware: MiddlewareHandler<{
           return getCookie(c, key);
         },
         set: (key: string, value: any, options: object) => {
-          setCookie(c, key, value, options);
+          setCookie(c, key, value, {
+            ...options,
+            maxAge: Math.min(options?.maxAge || 34560000, 34560000),
+          });
         },
         remove: (key: string, options: object) => {
           deleteCookie(c, key, options);
@@ -29,7 +32,21 @@ export const supabaseMiddleware: MiddlewareHandler<{
       cookieOptions: {
         httpOnly: true,
         secure: true,
+        sameSite: 'lax',
+        maxAge: 34560000 // 400 days in seconds
       },
+      auth: {
+        flowType: 'pkce',
+        autoRefreshToken: true,
+        detectSessionInUrl: true,
+        persistSession: true,
+        cookieOptions: {
+          maxAge: 34560000, // 400 days in seconds
+          secure: true,
+          sameSite: 'lax',
+          httpOnly: true
+        }
+      }
     }
   );
   c.set('supabase', client);
