@@ -56,9 +56,6 @@ export default function CreateForm() {
                 defaultValue="false"
                 required
               >
-                <option disabled checked="true">
-                  Choose a status
-                </option>
                 <option value="false">Pending</option>
                 <option value="true">Completed</option>
               </select>
