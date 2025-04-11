@@ -1,6 +1,15 @@
 import { execSync } from 'child_process';
+import { mkdir } from 'fs/promises';
+import { existsSync } from 'fs';
+import { join } from 'path';
 
 try {
+  // 确保 dist 目录存在
+  const distDir = join(process.cwd(), 'dist');
+  if (!existsSync(distDir)) {
+    await mkdir(distDir, { recursive: true });
+  }
+
   // 构建 CSS
   execSync('npm run build:css', { stdio: 'inherit' });
   
