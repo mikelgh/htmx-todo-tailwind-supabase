@@ -1,8 +1,0 @@
-{
-  "name": "htmx-todo-v2",
-  "compatibility_date": "2023-12-01",
-  "main": "src/index.tsx",
-  "assets": {
-    "directory": "./dist"
-  }
-} 

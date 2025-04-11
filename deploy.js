@@ -14,7 +14,7 @@ try {
   execSync('npm run build:css', { stdio: 'inherit' });
   
   // 部署到 Cloudflare Workers
-  execSync('npx wrangler deploy', { stdio: 'inherit' });
+  execSync('npx wrangler deploy src/index.tsx --assets dist', { stdio: 'inherit' });
   
   console.log('Deployment completed successfully!');
 } catch (error) {
